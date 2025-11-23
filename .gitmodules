@@ -1,0 +1,3 @@
+[submodule "cassandra-cpp-driver"]
+	path = cassandra-cpp-driver
+	url = https://github.com/apache/cassandra-cpp-driver.git

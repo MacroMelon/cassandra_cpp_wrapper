@@ -5,12 +5,13 @@
 #ifndef CASSANDRA_CPP_WRAPPER_SESSION_H
 #define CASSANDRA_CPP_WRAPPER_SESSION_H
 
-#include
+#include <cassandra.h>
+#include <string>
 
 namespace casswrap {
     class Session {
     public:
-        Session();
+        Session(const std::string& host);
     private:
         CassFuture* connect_future = nullptr;
         CassCluster* cluster = cass_cluster_new();

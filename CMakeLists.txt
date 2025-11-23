@@ -8,9 +8,10 @@ set(CMAKE_CXX_STANDARD 20)
 
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/cassandra-cpp-driver/include)
 #include_directories(${CASS_LIB_DIR}/include)
 
-add_subdirectory(/home/tharindu/projects/common_libs/cassandra-cpp-driver)
+add_subdirectory(${PROJECT_SOURCE_DIR}/cassandra-cpp-driver)
 
 add_library(cassandra_cpp_wrapper STATIC src/cassandra_wrapper.cpp
         src/Session.cpp
