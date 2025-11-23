@@ -1,0 +1,8 @@
+#ifndef CASSANDRA_CPP_WRAPPER_LIBRARY_H
+#define CASSANDRA_CPP_WRAPPER_LIBRARY_H
+
+#include "Session.h"
+
+void hello();
+
+#endif // CASSANDRA_CPP_WRAPPER_LIBRARY_H
