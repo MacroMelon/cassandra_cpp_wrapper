@@ -7,16 +7,31 @@
 
 #include <cassandra.h>
 #include <string>
+#include <memory>
+#include "SqlStatement.h"
+#include "settings.h"
+#include "Value.h"
+
+#include <iostream>
+
+//TODO - use smart pointers
+//TODO - SSL
+
+//A memory safe(?) wrapper for the CassSession object that implements RAII
 
 namespace casswrap {
+    class SqlStatement;
     class Session {
     public:
-        Session(const std::string& host);
+        Session(SessionSettings connectionSettings);
+        ~Session();
+        SqlStatement sql(std::string sqlString);
+        CassSession* getCassSessionPtr();
     private:
-        CassFuture* connect_future = nullptr;
-        CassCluster* cluster = cass_cluster_new();
-        CassSession* session = cass_session_new();
+        //std::unique_ptr<CassSession, void(*)(cass_session_free*)> session;
+        CassSession* session;
+        CassCluster* cluster;
     };
-} // casswrap
+}
 
 #endif //CASSANDRA_CPP_WRAPPER_SESSION_H

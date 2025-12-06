@@ -1,3 +1,5 @@
 Can also use this for ScyllaDB
 
 Rename to Cassito? Like Cassandra + burrito
+
+todo - check if projects using this library also need to link to libcassandra_static.a or just libcassandra_cpp_wrapper.a

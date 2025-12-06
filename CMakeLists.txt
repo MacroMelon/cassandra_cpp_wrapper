@@ -6,6 +6,12 @@ set(CMAKE_CXX_STANDARD 20)
 #TODO - refactor into git submodule
 #set(CASS_LIB_DIR /home/tharindu/projects/common_libs/cassandra-cpp-driver)
 
+find_path(LIBUV_INCLUDE_DIR NAMES uv.h)
+find_library(LIBUV_LIBRARIES NAMES uv libuv)
+
+find_package(OpenSSL)
+
+find_package(ZLIB)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/cassandra-cpp-driver/include)
@@ -15,11 +21,22 @@ set(CASS_BUILD_STATIC ON)
 set(CASS_BUILD_SHARED OFF)
 add_subdirectory(${PROJECT_SOURCE_DIR}/cassandra-cpp-driver)
 
-add_library(cassandra_cpp_wrapper STATIC src/cassandra_wrapper.cpp
+add_library(cassandra_cpp_wrapper STATIC
         src/Session.cpp
-        # include/Session.h ?
+        include/Session.h
+        include/cassandra_wrapper.h
+        src/SqlStatement.cpp
+        include/SqlStatement.h
+        include/settings.h
+        src/Row.cpp
+        include/Row.h
+        src/RowResult.cpp
+        include/RowResult.h
+        src/Value.cpp
+        include/Value.h
 )
 
+#yeaaa... minor shenaniganary
 target_compile_options(cassandra_static PRIVATE -Wno-error=stringop-overread)
 
 target_link_libraries(cassandra_cpp_wrapper cassandra_static)

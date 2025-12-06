@@ -2,7 +2,6 @@
 #define CASSANDRA_CPP_WRAPPER_LIBRARY_H
 
 #include "Session.h"
-
-void hello();
+#include "settings.h"
 
 #endif // CASSANDRA_CPP_WRAPPER_LIBRARY_H
