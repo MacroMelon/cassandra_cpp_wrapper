@@ -8,7 +8,7 @@ A C++ wrapper for the
 [Datastax Cassandra C/C++ driver](https://github.com/apache/cassandra-cpp-driver/tree/master)
 meant to actually use proper C++ memory safe techniques.
 
-It uses some heinous form of RAII that I came up with sleep deprived and high
+It uses some heinous form of RAII that I came up with while sleep deprived and high
 on jaffacakes.
 
 ### I implore you, PLEASE do not use this in production environments!
