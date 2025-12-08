@@ -11,7 +11,7 @@ namespace casswrap {
         uint_fast16_t port;
         std::string user;
         std::string password;
-        std::string database;
+        std::string keyspace;
     };
 }
 #endif //CASSANDRA_CPP_WRAPPER_SETTINGS_H

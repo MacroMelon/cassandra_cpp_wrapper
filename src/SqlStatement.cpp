@@ -37,6 +37,22 @@ RowResult SqlStatement::execute() {
     return RowResult(cass_future_get_result(future));
 }
 
+SqlStatement SqlStatement::bind(std::string parameterName, int64_t value) {
+    cass_statement_bind_int64_by_name(preparedStatement, parameterName.c_str(), value);
+    return *this;
+}
+
+SqlStatement SqlStatement::bind(size_t index, int64_t value) {
+    cass_statement_bind_int64(preparedStatement, index, value);
+    return *this;
+}
+
+SqlStatement SqlStatement::bind(int64_t value) {
+    cass_statement_bind_int64(preparedStatement, currentBindIndex, value);
+    currentBindIndex++;
+    return *this;
+}
+
 SqlStatement::~SqlStatement() {
     cass_statement_free(preparedStatement);
 }

@@ -23,7 +23,7 @@ std::string Value::getString() {
         //error
         throw 3;
     }
-    return std::string(output);
+    return std::string(output, message_length);
 }
 
 uint32_t Value::getUint32() {
@@ -47,11 +47,12 @@ int64_t Value::getInt64() {
 template <>
 std::string Value::get<std::string>() {
     const char* output;
-    if (cass_value_get_string(value, &output, NULL) != CASS_OK) {
+    size_t message_length;
+    if (cass_value_get_string(value, &output, &message_length) != CASS_OK) {
         //error
         throw 3;
     }
-    return std::string(output);
+    return std::string(output, message_length);
 }
 
 template <>

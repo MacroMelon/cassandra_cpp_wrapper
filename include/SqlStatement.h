@@ -19,9 +19,13 @@ namespace casswrap {
     public:
         SqlStatement(Session* sessionIn, std::string query);
         RowResult execute();
+        SqlStatement bind(std::string parameterName, int64_t value);
+        SqlStatement bind(size_t index, int64_t value);
+        SqlStatement bind(int64_t value);
         ~SqlStatement();
 
     private:
+        size_t currentBindIndex = 0;
         CassSession* associatedSession;
         CassStatement* preparedStatement;
     };

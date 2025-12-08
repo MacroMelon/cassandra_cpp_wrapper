@@ -27,8 +27,15 @@ Session::Session(SessionSettings connectionSettings) {
 
     cass_cluster_set_credentials(cluster, connectionSettings.user.c_str(), connectionSettings.password.c_str());
 
+    CassFuture* connect_future;
+
     /* Provide the cluster object as configuration to connect the session */
-    CassFuture* connect_future = cass_session_connect(session, cluster);
+    if (connectionSettings.keyspace.empty()) {
+        connect_future = cass_session_connect(session, cluster);
+    }
+    else {
+        connect_future = cass_session_connect_keyspace(session, cluster, connectionSettings.keyspace.c_str());
+    }
 
     if (cass_future_error_code(connect_future) != CASS_OK) {
         //connection failed
