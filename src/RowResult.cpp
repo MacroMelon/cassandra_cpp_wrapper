@@ -13,8 +13,8 @@ RowResult::RowResult(const CassResult* resultIn) {
 }
 
 Row RowResult::fetchOne() {
-    return Row(this, currentRow);
     currentRow += 1;
+    return Row(this, currentRow);
 }
 
 const CassRow* RowResult::getCassRowPtr(size_t rowIndex) {
