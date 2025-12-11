@@ -23,21 +23,25 @@ namespace casswrap {
         void executeAsync();
         RowResult executeAsyncWaitGetResult();
 
-        SqlStatement bind(std::string parameterName, int64_t value);
-        SqlStatement bind(size_t index, int64_t value);
-        SqlStatement bind(int64_t value);
+        SqlStatement* bind(std::string parameterName, int64_t value);
+        SqlStatement* bind(size_t index, int64_t value);
+        SqlStatement* bind(int64_t value);
 
-        SqlStatement bind(std::string parameterName, uint32_t value);
-        SqlStatement bind(size_t index, uint32_t value);
-        SqlStatement bind(uint32_t value);
+        SqlStatement* bind(std::string parameterName, uint32_t value);
+        SqlStatement* bind(size_t index, uint32_t value);
+        SqlStatement* bind(uint32_t value);
 
-        SqlStatement bind(std::string parameterName, int32_t value);
-        SqlStatement bind(size_t index, int32_t value);
-        SqlStatement bind(int32_t value);
+        SqlStatement* bind(std::string parameterName, int32_t value);
+        SqlStatement* bind(size_t index, int32_t value);
+        SqlStatement* bind(int32_t value);
 
-        SqlStatement bindUUID(std::string parameterName, std::string uuid);
-        SqlStatement bindUUID(size_t index, std::string uuid);
-        SqlStatement bindUUID(std::string uuid);
+        SqlStatement* bind(std::string parameterName, double value);
+        SqlStatement* bind(size_t index, double value);
+        SqlStatement* bind(double value);
+
+        SqlStatement* bindUUID(std::string parameterName, std::string uuid);
+        SqlStatement* bindUUID(size_t index, std::string uuid);
+        SqlStatement* bindUUID(std::string uuid);
 
         ~SqlStatement();
 

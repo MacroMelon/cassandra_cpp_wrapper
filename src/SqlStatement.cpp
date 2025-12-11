@@ -66,77 +66,94 @@ RowResult SqlStatement::executeAsyncWaitGetResult() {
 }
 
 //int64
-SqlStatement SqlStatement::bind(std::string parameterName, int64_t value) {
+SqlStatement* SqlStatement::bind(std::string parameterName, int64_t value) {
     cass_statement_bind_int64_by_name(preparedStatement, parameterName.c_str(), value);
-    return *this;
+    return this;
 }
 
-SqlStatement SqlStatement::bind(size_t index, int64_t value) {
+SqlStatement* SqlStatement::bind(size_t index, int64_t value) {
     cass_statement_bind_int64(preparedStatement, index, value);
-    return *this;
+    return this;
 }
 
-SqlStatement SqlStatement::bind(int64_t value) {
+SqlStatement* SqlStatement::bind(int64_t value) {
     cass_statement_bind_int64(preparedStatement, currentBindIndex, value);
     currentBindIndex++;
-    return *this;
+    return this;
 }
 
 //uint32
-SqlStatement SqlStatement::bind(std::string parameterName, uint32_t value) {
+SqlStatement* SqlStatement::bind(std::string parameterName, uint32_t value) {
     cass_statement_bind_uint32_by_name(preparedStatement, parameterName.c_str(), value);
-    return *this;
+    return this;
 }
 
-SqlStatement SqlStatement::bind(size_t index, uint32_t value) {
+SqlStatement* SqlStatement::bind(size_t index, uint32_t value) {
     cass_statement_bind_uint32(preparedStatement, index, value);
-    return *this;
+    return this;
 }
 
-SqlStatement SqlStatement::bind(uint32_t value) {
+SqlStatement* SqlStatement::bind(uint32_t value) {
     cass_statement_bind_uint32(preparedStatement, currentBindIndex, value);
     currentBindIndex++;
-    return *this;
+    return this;
 }
 
 //int32
-SqlStatement SqlStatement::bind(std::string parameterName, int32_t value) {
+SqlStatement* SqlStatement::bind(std::string parameterName, int32_t value) {
     cass_statement_bind_int32_by_name(preparedStatement, parameterName.c_str(), value);
-    return *this;
+    return this;
 }
 
-SqlStatement SqlStatement::bind(size_t index, int32_t value) {
+SqlStatement* SqlStatement::bind(size_t index, int32_t value) {
     cass_statement_bind_int32(preparedStatement, index, value);
-    return *this;
+    return this;
 }
 
-SqlStatement SqlStatement::bind(int32_t value) {
+SqlStatement* SqlStatement::bind(int32_t value) {
     cass_statement_bind_int32(preparedStatement, currentBindIndex, value);
     currentBindIndex++;
-    return *this;
+    return this;
+}
+
+//double
+SqlStatement* SqlStatement::bind(std::string parameterName, double value) {
+    cass_statement_bind_double_by_name(preparedStatement, parameterName.c_str(), value);
+    return this;
+}
+
+SqlStatement* SqlStatement::bind(size_t index, double value) {
+    cass_statement_bind_double(preparedStatement, index, value);
+    return this;
+}
+
+SqlStatement* SqlStatement::bind(double value) {
+    cass_statement_bind_double(preparedStatement, currentBindIndex, value);
+    currentBindIndex++;
+    return this;
 }
 
 //uuid
-SqlStatement SqlStatement::bindUUID(std::string parameterName, std::string uuid) {
+SqlStatement* SqlStatement::bindUUID(std::string parameterName, std::string uuid) {
     CassUuid cassUUID;
     cass_uuid_from_string(uuid.c_str(), &cassUUID);
     cass_statement_bind_uuid_by_name(preparedStatement, parameterName.c_str(), cassUUID);
-    return *this;
+    return this;
 }
 
-SqlStatement SqlStatement::bindUUID(size_t index, std::string uuid) {
+SqlStatement* SqlStatement::bindUUID(size_t index, std::string uuid) {
     CassUuid cassUUID;
     cass_uuid_from_string(uuid.c_str(), &cassUUID);
     cass_statement_bind_uuid(preparedStatement, index, cassUUID);
-    return *this;
+    return this;
 }
 
-SqlStatement SqlStatement::bindUUID(std::string uuid) {
+SqlStatement* SqlStatement::bindUUID(std::string uuid) {
     CassUuid cassUUID;
     cass_uuid_from_string(uuid.c_str(), &cassUUID);
     cass_statement_bind_uuid(preparedStatement, currentBindIndex, cassUUID);
     currentBindIndex++;
-    return *this;
+    return this;
 }
 
 SqlStatement::~SqlStatement() {

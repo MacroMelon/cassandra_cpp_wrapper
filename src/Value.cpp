@@ -34,9 +34,28 @@ uint32_t Value::getUint32() {
     }
     return output;
 }
+
+int32_t Value::getInt32() {
+    int32_t output;
+    if (cass_value_get_int32(value, &output) != CASS_OK) {
+        //error
+        throw 3;
+    }
+    return output;
+}
+
 int64_t Value::getInt64() {
     int64_t output;
     if (cass_value_get_int64(value, &output) != CASS_OK) {
+        //error
+        throw 3;
+    }
+    return output;
+}
+
+double Value::getDouble() {
+    double output;
+    if (cass_value_get_double(value, &output) != CASS_OK) {
         //error
         throw 3;
     }

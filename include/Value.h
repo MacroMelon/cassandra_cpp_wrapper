@@ -18,7 +18,9 @@ namespace casswrap {
 
         std::string getString();
         uint32_t getUint32();
+        int32_t getInt32();
         int64_t getInt64();
+        double getDouble();
         /*
         template <typename T> T get();
         template <> std::string get<std::string>();

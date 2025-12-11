@@ -13,6 +13,7 @@ namespace casswrap {
     public:
         RowResult(const CassResult* resultIn);
         Row fetchOne();
+        size_t count();
         const CassRow* getCassRowPtr(size_t rowIndex);
         ~RowResult();
 

@@ -16,3 +16,19 @@ on jaffacakes.
 Its meant to provide a simillar programming interface to the mysql xdevapi.
 Simillar is doing some heavy lifting here as it currently supports veeeery
 limited functionality :(
+
+TODO - add proper commands and examples for building and usage
+
+## Building
+1) Clone this repository
+2) Recursively init submodules
+3) Build like a normal cmake application in some build directory
+
+## Usage
+1) Add the include folder to your project's header paths
+2) Link against:
+   - build_directory/libcassandra_static.a
+   - build_directory/libcassandra_cpp_wrapper.a
+   - OpenSSL (OpenSSL::SSL)
+   - ZLib (ZLIB::ZLIB)
+   - libuv
