@@ -15,7 +15,7 @@ RowResult::RowResult(const CassResult* resultIn) {
 Row RowResult::fetchOne() {
     currentRow += 1;
     //todo - properly handle this like mysql devapi
-    if (cass_result_row_count(result) >= currentRow) throw 5;
+    //if (cass_result_row_count(result) >= currentRow) throw 5;
     return Row(this, currentRow);
 }
 
