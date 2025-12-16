@@ -53,7 +53,7 @@ TODO - add proper commands and examples for building and usage
    cassandraSession.sql(cqlStr)
                 .bindUUID(kittyUuidString)
                 .bind("Meowy")
-                .bind(int64_t(2))
+                .bind(int64_t(2))  //a bunch of bind types are supported, check out SqlStatement.h for all of them :D
                 .executeAsync();   //yeeee non-blocking is a thing!
 
    //and to get stuff:
